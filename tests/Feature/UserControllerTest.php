@@ -38,6 +38,7 @@ class UserControllerTest extends TestCase
     {
         User::create([
             'usuario' => 'jdoe',
+            'email' => 'jdoe@example.com',
             'primerNombre' => 'John',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -54,6 +55,7 @@ class UserControllerTest extends TestCase
                 '*' => [
                     'id',
                     'usuario',
+                    'email',
                     'primerNombre',
                     'primerApellido',
                     'idDepartamento',
@@ -68,6 +70,7 @@ class UserControllerTest extends TestCase
     {
         $userData = [
             'usuario' => 'jdoe',
+            'email' => 'jdoe@example.com',
             'primerNombre' => 'John',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -88,6 +91,7 @@ class UserControllerTest extends TestCase
     {
         $user = User::create([
             'usuario' => 'jdoe',
+            'email' => 'jdoe@example.com',
             'primerNombre' => 'John',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -98,6 +102,7 @@ class UserControllerTest extends TestCase
 
         $updatedData = [
             'usuario' => 'johndoe',
+            'email' => 'johndoe@example.com',
             'primerNombre' => 'Johnny',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -114,6 +119,7 @@ class UserControllerTest extends TestCase
         $response->assertJsonStructure([
             'id',
             'usuario',
+            'email',
             'primerNombre',
             'segundoNombre',
             'primerApellido',
@@ -126,6 +132,7 @@ class UserControllerTest extends TestCase
 
         $response->assertJson([
             'usuario' => 'johndoe',
+            'email' => 'johndoe@example.com',
             'primerNombre' => 'Johnny',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -139,6 +146,7 @@ class UserControllerTest extends TestCase
     {
         $user = User::create([
             'usuario' => 'jdoe',
+            'email' => 'jdoe@example.com',
             'primerNombre' => 'John',
             'segundoNombre' => 'Doe',
             'primerApellido' => 'Doe',
@@ -159,6 +167,6 @@ class UserControllerTest extends TestCase
         $response = $this->postJson('/api/users', []);
 
         $response->assertStatus(422)
-            ->assertJsonValidationErrors(['usuario', 'primerNombre', 'primerApellido', 'idDepartamento', 'idCargo']);
+            ->assertJsonValidationErrors(['usuario', 'email', 'primerNombre', 'primerApellido', 'idDepartamento', 'idCargo']);
     }
 }

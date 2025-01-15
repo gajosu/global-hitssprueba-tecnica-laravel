@@ -14,6 +14,7 @@ return new class () extends Migration {
             $table->string('segundoNombre');
             $table->string('primerApellido');
             $table->string('segundoApellido');
+            $table->string('email')->unique();
             $table->unsignedBigInteger('idDepartamento');
             $table->unsignedBigInteger('idCargo');
             $table->timestamps();
